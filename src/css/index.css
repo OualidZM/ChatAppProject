@@ -8,3 +8,14 @@
 body{
     background-color: cyan;
 }
+
+input{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+
+
+.shiftStyle{
+}
