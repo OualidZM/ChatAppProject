@@ -2,6 +2,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+
 }
 
 
@@ -10,40 +12,29 @@ body{
     height: 100vh;
 }
 
-input{
-    display: flex;
-    flex-wrap: wrap;
+textarea{
     float:left;
-    margin: 0vh 5vw;
-    height: 4vh; 
-    overflw-y: auto;
-     outline: none;
-    
-
+    margin: 0vh 2.5vw;
+    height: 5vh; 
+    outline: none;
+    resize: none;
 }
 
 
 .btn{
     padding:5px;
     margin: .5vh .5vw;
-/*     display: flex;
-    flex-direction: column; */
-/*     align-items: center; */
 }
 
 #keybordBox{
-    display: flex;
-/*     flex-wrap: wrap; */
-    justify-content: center;
-    flex-direction: column;
-    /*     height: 50vh; */
-    /*     margin: 4vh 1vw; */
     background-color: white;
     border-radius: 0px 0px 24px 24px;
-
-
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-column: 2 / 6;
 }
+
 /* 
 .shiftStyle{
 } */
@@ -51,31 +42,33 @@ input{
 .container{
     display: grid;
     justify-content: center;
+    grid-template-columns: 20% 20% 20% 20% 20% 20%;
 }
 
 
 .messageArea{
+    grid-column: 2/6;
+/*     background: yellow; */
     background-image: url(../img/phone_background.png);
     background-repeat: no-repeat;
     height: 50vh;
-    display: block;
-    height: 50vh; 
+    display: flex;
     overflow-y: auto;
     border-radius: 24px 24px 0px 0px;
-    
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .sendAreaStyle{
+    grid-column: 2 / 6;
     display: flex;
     justify-content: center;
     background:white;
     
-/*     margin:-5hv 2vw; */
-    
 }
 
 .giftStyle{
-float: left;
+    float: left;
 }
 
 .sendStyle{
@@ -84,12 +77,14 @@ float: left;
 
 .message{
     display: flex;
-    justify-content: flex-end;
-    margin: 1vh 1vh 1vh 50vw;
-    color: black;
-    background: white;
+    justify-content: center;
+/*     margin: 2vh 1vh 1vw 40vw; */
+/*     up - down - right - left */
     border-radius: 8px;
-    
+    max-width: 45vw;
+    margin: 1vh 1vw;
+    background-color: white;  
+    overflow-wrap: anywhere;
     
 /*     overflow-y: auto; */
     
@@ -102,24 +97,11 @@ float: left;
     display: flex;
     height: 5vh;
     border-radius: 24px 24px 0px 0px;
+    
 }
 
 /* .send{
     margin:0vh 0vw;
-} */
-/* .firstColumn{
-    
+    display: flex;
 }
-
-.secondColumn{
-
-}
-
-.thirdColumn{
-
-
-}
-
-.fourthdColumn{
-    
-} */
+ */
