@@ -1,4 +1,5 @@
 var contadorShift = 0;
+var giftContador = 0;
 var arrBtn = document.querySelectorAll('.btn');
 arrBtn.forEach(element => element.addEventListener('click',(e)=>{
 
@@ -6,7 +7,7 @@ arrBtn.forEach(element => element.addEventListener('click',(e)=>{
         return document.getElementById('keyValue').value += ' ';
     }
     else if(element.innerHTML === 'enter'){
-        return document.getElementById('keyValue').value += "\n";
+        return document.getElementById('keyValue').value += "<br>";
     }
 
     else if(element.innerHTML === '|--'){
@@ -74,17 +75,27 @@ arrBtn.forEach(element => element.addEventListener('click',(e)=>{
     }}));
 
 document.getElementById('giftButton').addEventListener('click',()=>{
-    alert('Gift Button')
+    giftContador++
+    
+    if(giftContador == 1){
+        return arrBtn.forEach(e => e.style.visibility = 'hidden')
+}
+    else if(giftContador == 2){
+        giftContador = 0;
+        return arrBtn.forEach(e => e.style.visibility = 'visible')
+    }
 })
 
 document.getElementById('sendButton').addEventListener('click',()=>{
+
     let inputValue = document.getElementById('keyValue').value //input value
     let areaMessage =  document.querySelector('.messageArea') ; // area message
     let createParagraf = document.createElement('p'); // create p element
-    
+    let  lenginp = inputValue.length;
     let appendChild = areaMessage.appendChild(createParagraf);
+
     appendChild.innerHTML = document.getElementById('keyValue').value;
     appendChild.className = 'message'
-
+    appendChild.style.width = (lenginp + 2) + 'vh';
     document.getElementById('keyValue').value  = document.getElementById('keyValue').value.replace(inputValue,'');
 })
