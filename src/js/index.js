@@ -1,3 +1,14 @@
+const date = new Date();
+
+const hours = date.getHours().toLocaleString();
+const minutes = date.getMinutes().toLocaleString();
+const day = date.getDate().toLocaleString();
+const nameMonth = date.toLocaleString('default',{month:'short'});
+
+// var ghipyKey 
+
+document.getElementById('datee').innerHTML = `${day} ${nameMonth}`;
+
 var contadorShift = 0;
 var giftContador = 0;
 var arrBtn = document.querySelectorAll('.btn');
@@ -18,7 +29,7 @@ arrBtn.forEach(element => element.addEventListener('click',(e)=>{
     }
     else if(element.innerHTML === '--|'){
         let inputValue = document.getElementById('keyValue').value
-        return document.getElementById('keyValue').value  = document.getElementById('keyValue').value.substring(1);
+        return document.getElementById('keyValue').value  = inputValue.substring(1);
 
 
     }
@@ -74,28 +85,49 @@ arrBtn.forEach(element => element.addEventListener('click',(e)=>{
             }
     }}));
 
-document.getElementById('giftButton').addEventListener('click',()=>{
-    giftContador++
-    
-    if(giftContador == 1){
-        return arrBtn.forEach(e => e.style.visibility = 'hidden')
-}
-    else if(giftContador == 2){
-        giftContador = 0;
-        return arrBtn.forEach(e => e.style.visibility = 'visible')
-    }
-})
+    let emojiButton = document.getElementById('gifButton');
+    let emoj = document.querySelectorAll('.emoj');
 
-document.getElementById('sendButton').addEventListener('click',()=>{
+    emojiButton.addEventListener('click',()=>{
+        let emojiBox = document.getElementById('gifBox');
+        let keybord = document.getElementById('keybordBox');
+
+        giftContador++
+        
+        if(giftContador == 1){
+            keybord.style.visibility = 'hidden';
+            emojiBox.style.visibility = 'visible';
+            
+    }
+        else{
+            if(giftContador == 2){
+                emojiBox.style.visibility = 'hidden';
+                keybord.style.visibility = 'visible';
+                giftContador = 0;
+            }
+        }
+    })
+    emoj.forEach(elem => elem.addEventListener('click',()=>{
+        // elem.style.visibility = 'visible';
+        document.getElementById('keyValue').value += elem.innerHTML
+    }
+    ))
+
+
+    document.getElementById('sendButton').addEventListener('click',()=>{
 
     let inputValue = document.getElementById('keyValue').value //input value
     let areaMessage =  document.querySelector('.messageArea') ; // area message
-    let createParagraf = document.createElement('p'); // create p element
+    let createParagraf = document.createElement('h3'); // create p element
     let  lenginp = inputValue.length;
     let appendChild = areaMessage.appendChild(createParagraf);
 
-    appendChild.innerHTML = document.getElementById('keyValue').value;
+
+    appendChild.innerHTML = document.getElementById('keyValue').value + " " +`<h6 class="dateSendStyle" >${hours}:${minutes}</h6>` ;
     appendChild.className = 'message'
-    appendChild.style.width = (lenginp + 2) + 'vh';
+    appendChild.style.width = (lenginp + 9) + 'vh';
     document.getElementById('keyValue').value  = document.getElementById('keyValue').value.replace(inputValue,'');
 })
+
+
+
