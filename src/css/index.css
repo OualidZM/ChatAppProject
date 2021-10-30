@@ -1,5 +1,6 @@
 *{
-    padding: 0;
+    
+/*     padding:0; */
     margin: 0;
     box-sizing: border-box;
     font-family: 'Fira Sans', sans-serif;
@@ -12,83 +13,24 @@ body{
     height: 100vh;
 }
 
-textarea{
-    float:left;
-    margin: 0vh 2.5vw;
-    height: 5vh; 
-    outline: none;
-    resize: none;
-}
-
-
-.btn{
-    padding:5px;
-    margin: .5vh .5vw;
-}
-
-#keybordBox{
-    background-color: white;
-    border-radius: 0px 0px 24px 24px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    grid-column: 2 / 6;
-}
-
-/* 
-.shiftStyle{
-} */
-
 .container{
     display: grid;
-    justify-content: center;
-    grid-template-columns: 20% 20% 20% 20% 20% 20%;
-}
-
-
-.messageArea{
-    grid-column: 2/6;
-/*     background: yellow; */
-    background-image: url(../img/phone_background.png);
-    background-repeat: no-repeat;
-    height: 50vh;
-    display: flex;
-    overflow-y: auto;
-    border-radius: 24px 24px 0px 0px;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.sendAreaStyle{
-    grid-column: 2 / 6;
-    display: flex;
-    justify-content: center;
-    background:white;
-    
-}
-
-.giftStyle{
-    float: left;
-}
-
-.sendStyle{
-    
-}
-
-.message{
-    display: flex;
-    justify-content: center;
-/*     margin: 2vh 1vh 1vw 40vw; */
-/*     up - down - right - left */
-    border-radius: 8px;
-    max-width: 45vw;
-    margin: 1vh 1vw;
-    background-color: white;  
-    overflow-wrap: anywhere;
-    
-/*     overflow-y: auto; */
-    
-    
+/*     justify-content: center; */
+    width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+/*   grid-template-rows: 5% 40% 5% 26% 5%; */
+    grid-template-rows: .2fr 0fr 0fr 0fr .2fr;
+    grid-template-areas: 
+        ". . . . ."
+        ". . topPhone . ."
+        ". . content1 . ."
+        ". . content2 . ."
+        ". . content3 . ."; 
+/*     grid-row-start, 
+    grid-column-start, 
+    grid-row-end, 
+    grid-column-end. 
+    */
 }
 
 .topPhone{
@@ -97,11 +39,184 @@ textarea{
     display: flex;
     height: 5vh;
     border-radius: 24px 24px 0px 0px;
+    grid-area: topPhone;
     
 }
 
-/* .send{
-    margin:0vh 0vw;
+.messageArea{
+    grid-area: content1;
+    
+/*     grid-area:2/2/2/2; */
+   text-align: center;
+    background: yellow;
+/*     background-image: url(../img/phone_background.png); */
+/*     background-repeat: no-repeat; */
+    height: 50vh;
     display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    
+        
 }
+
+.positionDate{
+    display: flex;
+    width: 100%;
+    margin: 1vh 0vw;
+    justify-content: center;
+}
+
+.timeStyle{
+
+    
+    background:yellowgreen;
+/*     margin: 2vh 9vw; */
+    padding: 0vh 2vw;
+    border-radius:24px;
+}
+
+.message{
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    max-width: 45vw;
+    margin: 1vh 1vw;
+    background-color: white;  
+    overflow-wrap: anywhere;
+    
+/*     overflow-y: auto; */
+    
+}
+
+
+.dateSendStyle{
+    font-size: .7rem;
+/*     background: green; */
+    flex-direction: column;
+    width:10vw;
+    display: flex;
+    justify-content: center; 
+}
+
+
+.sendAreaStyle{
+    grid-area: content2;
+    
+    display: flex;
+    justify-content: center;
+    background:white;
+/*     grid-area:3/3/4/4; */
+    
+}
+
+.gifStyle{
+    float: left;
+}
+
+textarea{
+    float:left;
+    margin: 0vh 2.5vw;
+    height: 5vh; 
+    outline: none;
+    resize: none;
+}
+
+/* 
+.sendStyle{
+    
+} */
+
+
+/* .btn{
+    padding:5px;
+    margin: .5vh .5vw;
+} */
+
+#keybordBox{
+
+/*     grid-area:4/3/5/4; */
+    background-color: white;
+    border-radius: 0px 0px 24px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+/*     height: 20vh; */
+/*     grid-column: 2 / 3;
+    grid-row: 5/5; */
+    grid-area: content3;
+}
+
+.btn{
+    padding:5px;
+}
+
+/* 
+.shiftStyle{
+} */
+
+
+#gifBox{
+    visibility: hidden;
+    background: green;
+    /* grid-column: 2 / 6; */
+/*     grid-row: 3/7; */
+    height: 20vh;
+    display: flex;
+    border-radius: 0px 0px 24px 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-area: content3;
+}
+/* 
+.emoj{
+    
+} */
+
+
+
+/* .btn{
+    padding: 4%;
+    margin: 0vh 0vw;
+} 
  */
+
+
+
+@media screen and (max-width: 1366px){
+
+}
+/* @media screen and (max-width: 1024px){
+
+
+} */
+
+
+/* @media screen and (max-width: 360px){
+    
+
+
+} */
+
+
+
+
+/* # Desktop */
+
+
+/* @media only screen and (max-width: 992px){
+
+} */
+
+
+/* # Tablet */
+
+/* @media screen and (max-width: 768px){
+
+
+}
+
+@media screen and (max-width: 480px){
+
+
+} */
