@@ -1,10 +1,7 @@
 # Chat App
 
 ## About the Project
-### In this project, the main focus was to make a Chat App
-### that looks like whatsapp and telegram, using JS,Html and
-### Css.
-### We had the freedom to make it on our way, that means that doesn't specialy need to look like whatsapp and telegram 
+ In this project the main focus was to make a Chat App, that looks like WhatsApp and Telegram, using JS, HTML and CSS. We had the freedom to do it on our way, that means that doesn't especially need to look like WhatsApp and Telegram 
 
 ## TODO LIST
 
@@ -23,29 +20,27 @@
 - [x] RESP
 - [x] CENTR
 - [x] FONTS
-- [ ] VARS
+- [x] VARS
 - [x] STYLE-DIW
 - [x] STYLE-DWEC
 - [x] SEPAR
 - [x] EMOJ
-- [ ] PENJA
-- [ ] ALTRES
+- [x] PENJA
 
 
 
 ### INTER
 ---
- The Chat App is divided in tree parts, the "message Area", were the  
- messages and the date will be displayed, to be able to send the messages we need to have a place to write the message and send it, this will be the  "send Area", that we going to be able to find emojis too, and finally we have the keyboard, were we going to be able to write our messages.  
+ The Chat App is divided in three parts, the `message Area`, where the messages and the date will be displayed, to be able to send the messages and the emojis, we need to have an area to get the input from the user , this will be the  `send Area`, and finally we have the `keyboard`, in this area we are going to be able to write our messages.  
 
 ### MESSAG
 ---
 
-I create a `new Date` object,
+To get the message i need to create a `new Date` object,
     
     const date = new Date()
  
-for then later on get the month(short),day,hour and minuts
+for then later on get the month(short version), day, hour and minutes, and added inside the message, I will explain later how I add the date inside the message `TEXTAR`
 
     const hours = date.getHours().toLocaleString()
     const minutes = date.getMinutes().toLocaleString()
@@ -63,42 +58,71 @@ So the first thing we do is  add an `addEventListener()`, to register the click 
 
     document.getElementById('sendButton').addEventListener('click', () => {
  
- Now we need to get the input of the user `inputValue`, the place were the message will be displayed `areaMessage`, we need to create the element too `createParagraf`, another thing that we need is the length of the input, like that we can measure the width that the message will have `lenginp`, and finally we need a variable that appends the message inside the area Message `appendChild`    
+  Now we need to get the input of the user `inputValue`
 
-   
         let inputValue = document.getElementById('keyValue').value //input value
-        let areaMessage = document.querySelector('.messageArea') // area message
-        let createParagraf = document.createElement('h3') // create p element
-        let lenginp = inputValue.length
-        let appendChild = areaMessage.appendChild(createParagraf)
 
-Now that `createParagraf` is appended inside the `areaMessage`, we need to add content to it, for this, the variable `appendChild` will innerHTML from `inputValue`, plus a `h6` that will contain the date
+  the place were the message will be displayed `areaMessage
+
+        let areaMessage = document.querySelector('.messageArea') // area message
+
+  we need to create the element, for later on append it on the area message `createElementt`
+ 
+        let createElementt = document.createElement('h3') // create p element
+
+  another thing that we need is the length of the input, like that we can measure the width and if it's an empty string `lenginp`  
+
+        let lenginp = inputValue.length
+
+
+the first conditional, if the length of the input is equal to 0, then, it will return nothing
+
+    if(lenginp == 0){
+        return;
+    }
+if it's not equal to 0, it will display the message
+
+    else{
+        if(lenginp > 0){
+
+ We need a variable to save the element `h3`, to then give style to it `appendChild`  
+
+        let appendChild = areaMessage.appendChild(createElementt)
+
+Now that `createElementt` is appended inside the `areaMessage`, and stored inside a variable `appendChild`, we need to add content to it, for this, the variable `appendChild` will innerHTML from `inputValue`, plus a `h6` that will contain the date
 
         appendChild.innerHTML =
             document.getElementById('keyValue').value + ' ' + `<h6 class="dateSendStyle" >${hours}:${minutes}</h6>`
 
-When the message is in the `areaMessage`, then we need to add style to it, 
+now that the message is in the `areaMessage`, I need to add style to it, 
 for this i will use `className`
 
         appendChild.className = 'message'
 
-So now the last thing is to get the `lenginp`, and add some width to it
+So now the last thing is to get the `lenginp`, and added as the width for the message plus 9
 
         appendChild.style.width = lenginp + 9 + 'vh'
 
-last we remove the text from the textarea, like that the user will add more messages
+we need to remove the text from the textarea, like that the if the user wants to add more messages, it will be available
 
         document.getElementById('keyValue').value = document.getElementById('keyValue').value.replace(inputValue, '')
+
+Finally, if there are a lot of messages, and they start to go down, this line of code will always stay at the bottom of the text area
+
+        areaMessage.scrollTop =  areaMessage.scrollHeight
+
+            }   
+        }
     })
 
 
 
 ### KEYB
 ---
-For the keyboard, i wanted to make a loop, like that i will not have repetead code.
+For the keyboard, I wanted to make a loop, like that I wouldn't have so much repeated code.
 
 
-First we need to add the same class to all the letters and specials keys,
+First, we add the same class to all the letters and special keys,
 after that we use `querySelectorAll()`, to get a nodeList
 
     var arrBtn = document.querySelectorAll('.btn')
@@ -119,23 +143,33 @@ We get the shift class, to style it depending on the state
     let shift = document.querySelector('.shiftStyle')
 
 
-if the shift wasn't pressed, then it will return the letter in `lowerCase()`, however if the shift was pressed one time, it will return the letter in uppercase, after that will return all the buttons in lowercase, but if the shift was pressed two times, it will return the letters in `upperCase()` and 
-last if the shift was pressed tree times it will return the letters in `lowerCase()` and set the counter to 0
+if the shift wasn't pressed, then it will return the letter in `lowerCase()`
 
                 if (contadorShift == 0) {
                     return (document.getElementById('keyValue').value +=
                         element.innerHTML.toLowerCase())
                 }
+
+ however if the shift was pressed one time, it will return the letter in uppercase, after that it will return all the buttons in lowercase
+
                 if (contadorShift == 1) {
                     document.getElementById('keyValue').value +=
                         element.innerHTML.toUpperCase()
                     arrBtn.forEach((e) => (e.style.textTransform = 'lowercase'))
                     shift.style.backgroundColor = '#e9e9ed'
                     contadorShift = 0
-                } else if (contadorShift == 2) {
+                } 
+                
+ but if the shift was pressed two times, it will return the letters in `upperCase()`
+
+                else if (contadorShift == 2) {
                     return (document.getElementById('keyValue').value +=
                         element.innerHTML.toUpperCase())
-                } else {
+                }
+                
+ last if the shift was pressed tree times it will return the letters in `lowerCase()`
+
+                 else {
                     if (contadorShift == 3) {
                         return (document.getElementById('keyValue').value +=
                             element.innerHTML.toLowerCase())
@@ -151,8 +185,7 @@ last if the shift was pressed tree times it will return the letters in `lowerCas
 ### EMOJI
 ---
 
-All the emojis are inside of a div, this div is not visible until the emoji button is clicked, if it's clicked the div that contains the letters will 
- hidde, and the emojis will be visible.  
+All the emojis are inside of a div, this div is not visible until the emoji button is clicked, if it's clicked the div that contains the letters will hide, and the emojis will be visible.
 
  We add a 
 
@@ -173,18 +206,17 @@ we get the keyboard div and the emoji div, and store it inside let variable
         let emojiBox = document.getElementById('emojiBox')
         let keybord = document.getElementById('keybordBox')
 
-We add one to the counter-revisa
+before going inside the if statements, we need to add one to the counter, because the moment that the user clicked the button it started to count
 
         emojiContador++
 
-If the counter is equal to one, then the first conditional will be true,
-and will hidde the keyboard div and show the emoji div
+If the counter is equal to one, then the first conditional will be true, and it will hide the keyboard div and show the emoji div
 
         if (emojiContador == 1) {
             keybord.style.visibility = 'hidden'
             emojiBox.style.visibility = 'visible'
         } 
-Else if the counter is equal to two, will hidde the emoji div and show the keyboard div, then the counter will be equal to 0.
+Else if the counter is equal to two, the emoji div it will hide, and show the keyboard div, then the counter will return to 0.
 
         else {
             if (emojiContador == 2) {
@@ -195,11 +227,11 @@ Else if the counter is equal to two, will hidde the emoji div and show the keybo
         }
     })
 
-To be able to show the emojis, first in the html, i added the same class to every emoji, like that i will be able to get a nodeList with `querySelectorAll()`
+To be able to show the emojis, first in the HTML, I added the same class to every emoji, like that I will be able to get a nodeList with `querySelectorAll()`
 
     let emoj = document.querySelectorAll('.emoj')
 
-Now we use a forEach loop, to print the emoji inside the textarea
+Now we use a forEach loop, to print the emoji inside the `textarea`
 
     emoj.forEach((elem) =>
         elem.addEventListener('click', () => {
@@ -210,9 +242,9 @@ Now we use a forEach loop, to print the emoji inside the textarea
     
 ### CE C
 ---
-When clicking `CE` it will delete the last word in a sentence, however when clicking `C`, it will delete all the message from the textarea
+When clicking `CE` it will delete the last word in a sentence, however when clicking `C`, it will delete all the message that textarea has
 
-First we need to check if the button is equal to `C`
+First, we need to check if the button is equal to `C`
 
     else if (element.innerHTML === 'C') {
 
@@ -226,7 +258,7 @@ Then we replace the actual value for `''`, this will delete all the message in t
                                                         .getElementById('keyValue')
                                                         .value.replace(inputValue, ''))
     } 
-If the button that was pressed equals to `CE`
+however, if the button that was pressed equals to `CE`
 
     else if (element.innerHTML === 'CE') {
 
@@ -246,9 +278,9 @@ Now, we replace the actual value for the new one, that will start from the index
 ### DELET
 ---
 
-when we delete, we have to ways to make it,first we have the `←` this will delete the last letter on the `textarea`, and `→` will delete the first letter on the `textarea`.
+When we delete, we have two ways to make it, first we have the `←` this will delete the last letter on the `textarea`, and `→` will delete the first letter on the `textarea`.
 
-First we need to check if it's equal to `←`
+First, we need to check if it's equal to `←`
 
     else if (element.innerHTML === '|--') {
 
@@ -279,9 +311,9 @@ And replace the `inputValue`without the first letter
 
 ### MAJUS
 ---
-I guess that the shift button was the most complicated to make, because i didn't know from were to start, i came to the conclusión that the best option was to make a counter, this counter will only reach to tree, because the shift only has tree states.
+I guess that the shift button was the most complicated to make, because I didn't know from where to start, I came to the conclusión that the best option was to make a counter, this counter will only reach to three, because the shift only has three states.
 
-First we need to check if button clicked is equal to shift
+First, we need to check if button clicked is equal to shift
 
     else if (element.innerHTML === 'shift') {
 if  it's true, then `contadorShift` will equal to +1
@@ -292,18 +324,18 @@ we get the shift class to style it later, `shiftStyle`
 
         let shift = document.querySelector('.shiftStyle')
 
-Now if contador equals to one, css style will be applied, and i use a forEach, to `textTransform` all the buttons
+Now if counter equals to one, CSS style will be applied, and I use a forEach, to `textTransform` all the buttons to uppercase
 
         if (contadorShift == 1) {
             shift.style.backgroundColor = 'cyan'
             arrBtn.forEach((e) => (e.style.textTransform = 'uppercase'))
         } 
-however if the `contadorShift` equals to two, some css will be applied
+however if the `contadorShift` equals to two, another CSS will be applied
 
         else if (contadorShift == 2) {
             shift.style.border = 'thick solid black'
         }
-and if `contadorShift` doesn't equal one or two, some css will be applied to restore the same background as before,and used a forEach  to `textTransform` all the buttons to lowercase, finally set `contadorShift` to 0
+and if `contadorShift` doesn't equal one or two, some CSS will be applied to restore the same background as before, and used a forEach  to `textTransform` all the buttons to lowercase, finally set `contadorShift` to 0
 
          else {
             shift.style.backgroundColor = '#e9e9ed'
@@ -314,12 +346,12 @@ and if `contadorShift` doesn't equal one or two, some css will be applied to res
     } 
 
 
-When clicking the shift button it will only affect the shift and the buttons, however it will not affect the letters in the `textarea`, this is because the shift has his own functionalitis, and if we want to add `uppercase()` on `textarea`, then we need to look the `KEYB` section
+When clicking the shift button it will only affect the shift and the buttons,  however, it will not affect the letters in the `textarea`, this is because the shift has his own states, and if we want to add `uppercase()` on `textarea`, then we need to look the `KEYB` section
 
 
 ### ESPAI
 ---
-To add a space we basicly, check if the button clicked is equal to `space`
+To add a space we, basically, check if the button clicked is equal to `space`
 
     if (element.innerHTML === 'SPACE') {
 
@@ -334,7 +366,7 @@ To add a line break, first we check if the button equals to `enter`
 
     else if (element.innerHTML === 'enter') {
 
-if it's true, we return a `<br>`, to the actual message
+if it's true, we return a `<br>`, behind the actual message
 
         return (document.getElementById('keyValue').value += '<br>')
     } 
@@ -342,19 +374,19 @@ if it's true, we return a `<br>`, to the actual message
 
 ### Grid
 ---
-In the class `container` is were we add the grid
+In the class `container` is where we add the grid
 
     .container{
         display: grid;
         width: 100%;
 
-i use `grid-template-columns`, and `grid-template-rows`, to divide the page in 5x5
+I use `grid-template-columns`, and `grid-template-rows`, to divide the page in 5x5
 
 
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: .2fr 0fr 0fr 0fr .2fr;
 
-and finally using `grid-template-areas`, to adjust the content, the `.`, means a blank space
+and finally, using `grid-template-areas`, to adjust the content, the `.`, means a blank space
 
         grid-template-areas: 
             ". . . . ."
@@ -364,7 +396,7 @@ and finally using `grid-template-areas`, to adjust the content, the `.`, means a
             ". . content3 . ."; 
     }
 
-now that have a `grid-template-areas`, we need to use `grid-area` in the childs if we want this to make effect.
+Now that the container has a `grid-template-areas`, we need to use `grid-area` in the children if we want this to make an effect.
 
     .topPhone{
         grid-area: topPhone;
@@ -378,3 +410,11 @@ now that have a `grid-template-areas`, we need to use `grid-area` in the childs 
     #keybordBox{
         grid-area: content3;
     }
+
+
+### Netlify
+
+Now the page is available on Netlify too
+
+[![Netlify Page](https://api.netlify.com/api/v1/badges/72578027-62e0-4396-be70-db18268e3b71/deploy-status)](https://chatappdiwdaw.netlify.app)
+
