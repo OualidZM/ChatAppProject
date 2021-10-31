@@ -10,7 +10,7 @@ const nameMonth = date.toLocaleString('default', { month: 'short' })
 document.getElementById('datee').innerHTML = `${day} ${nameMonth}`
 
 var contadorShift = 0
-var giftContador = 0
+var emojiContador = 0
 var arrBtn = document.querySelectorAll('.btn')
 arrBtn.forEach((element) =>
     element.addEventListener('click', (e) => {
@@ -84,22 +84,22 @@ arrBtn.forEach((element) =>
     })
 )
 
-let emojiButton = document.getElementById('gifButton')
+let emojiButton = document.getElementById('emojiButton')
 
 emojiButton.addEventListener('click', () => {
-    let emojiBox = document.getElementById('gifBox')
+    let emojiBox = document.getElementById('emojiBox')
     let keybord = document.getElementById('keybordBox')
 
-    giftContador++
+    emojiContador++
 
-    if (giftContador == 1) {
+    if (emojiContador == 1) {
         keybord.style.visibility = 'hidden'
         emojiBox.style.visibility = 'visible'
     } else {
-        if (giftContador == 2) {
+        if (emojiContador == 2) {
             emojiBox.style.visibility = 'hidden'
             keybord.style.visibility = 'visible'
-            giftContador = 0
+            emojiContador = 0
         }
     }
 })
@@ -107,7 +107,6 @@ emojiButton.addEventListener('click', () => {
 let emoj = document.querySelectorAll('.emoj')
 emoj.forEach((elem) =>
     elem.addEventListener('click', () => {
-        // elem.style.visibility = 'visible';
         document.getElementById('keyValue').value += elem.innerHTML
     })
 )
