@@ -48,12 +48,12 @@ arrBtn.forEach((element) =>
             let shift = document.querySelector('.shiftStyle')
 
             if (contadorShift == 1) {
-                shift.style.backgroundColor = 'cyan'
+                shift.style.backgroundColor = '#48cae4'
                 arrBtn.forEach((e) => (e.style.textTransform = 'uppercase'))
             } else if (contadorShift == 2) {
-                shift.style.border = 'thick solid black'
+                shift.style.border = 'thick solid #0884ff'
             } else {
-                shift.style.backgroundColor = '#e9e9ed'
+                shift.style.backgroundColor = '#b5b5c6'
                 shift.style.border = '#e9e9ed'
                 arrBtn.forEach((e) => (e.style.textTransform = 'lowercase'))
                 contadorShift = 0
@@ -114,13 +114,24 @@ emoj.forEach((elem) =>
 document.getElementById('sendButton').addEventListener('click', () => {
     let inputValue = document.getElementById('keyValue').value //input value
     let areaMessage = document.querySelector('.messageArea') // area message
-    let createParagraf = document.createElement('h3') // create p element
+    let createElementt = document.createElement('h3') // create p element
     let lenginp = inputValue.length
-    let appendChild = areaMessage.appendChild(createParagraf)
 
-    appendChild.innerHTML =
-        document.getElementById('keyValue').value + ' ' + `<h6 class="dateSendStyle" >${hours}:${minutes}</h6>`
-    appendChild.className = 'message'
-    appendChild.style.width = lenginp + 9 + 'vh'
-    document.getElementById('keyValue').value = document.getElementById('keyValue').value.replace(inputValue, '')
+    if(lenginp == 0){
+        return;
+    }
+    else{
+        if(lenginp > 0){
+            let appendChild = areaMessage.appendChild(createElementt)
+            appendChild.innerHTML =
+                document.getElementById('keyValue').value + ' ' + `<h6 class="dateSendStyle" >${hours}:${minutes}</h6>`
+            appendChild.className = 'message'
+            appendChild.style.width = lenginp + 9 + 'vh' 
+            document.getElementById('keyValue').value = document.getElementById('keyValue').value.replace(inputValue, '')
+            areaMessage.scrollTop =  areaMessage.scrollHeight
+        }
+    }
+
 })
+
+
