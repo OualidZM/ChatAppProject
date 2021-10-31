@@ -1,241 +1,170 @@
 *{
-    
-    /*     padding:0; */
-        margin: 0;
-        box-sizing: border-box;
-        font-family: 'Fira Sans', sans-serif;
-    
-    }
-    
-    :root {
-        --body-background-color:#e8a247;
-        --top-phone-color:white;
-        --message-area-background:yellow;
-        --message-area-image:url(../img/phone_background.png);
-        --time-background:yellowgreen;
-        --blue-color:#0884ff;
-    }
-    
-    
-    body{
-        background-color: var(--body-background-color);
-        height: 100vh;
-    }
-    
-    .container{
-        display: grid;
-        width: 100%;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: .2fr 0fr 0fr 0fr .2fr;
-        grid-template-areas: 
-            ". . . . ."
-            ". . topPhone . ."
-            ". . content1 . ."
-            ". . content2 . ."
-            ". . content3 . ."; 
-    }
-    
-    .topPhone{
-        background: var(--top-phone-color);
-        width:100%;
-        display: flex;
-        height: 5vh;
-        border-radius: 24px 24px 0px 0px;
-        grid-area: topPhone;
-        
-    }
-    
-    .messageArea{
-        grid-area: content1;
-        
-    /*     grid-area:2/2/2/2; */
-       text-align: center;
-        /* background: var(--message-area-background); */
-        background-image: var(--message-area-image);
-        background-repeat: no-repeat;
-        height: 50vh;
-        display: flex;
-        overflow-y: auto;
-        flex-direction: column;
-        align-items: flex-end;
-        
-            
-    }
-    
-    .positionDate{
-        display: flex;
-        width: 100%;
-        margin: 1vh 0vw;
-        justify-content: center;
-    }
-    
-    .timeStyle{
-    
-        
-        background:var(--time-background);
-    /*     margin: 2vh 9vw; */
-        padding: 0vh 2vw;
-        border-radius:24px;
-    }
-    
-    .message{
-        display: flex;
-        justify-content: center;
-        border-radius: 8px;
-        max-width: 45vw;
-        margin: 1vh 1vw;
-        background-color: var(--blue-color);  
-        color: white;
-        overflow-wrap: anywhere;
-        
-    /*     overflow-y: auto; */
-        
-    }
-    
-    
-    .dateSendStyle{
-        font-size: .7rem;
-    /*     background: green; */
-        flex-direction: column;
-        width:10vw;
-        display: flex;
-        justify-content: center; 
-        color: white;
-    
-    }
-    
-    
-    .sendAreaStyle{
-        grid-area: content2;
-        
-        display: flex;
-        justify-content: space-between;
-        background:white;
-    /*     grid-area:3/3/4/4; */
-        
-    }
-    
-    .emojiStyle{
-        float: left;
-        background-color: var(--blue-color);
-        border: none;
-    }
-    
-    textarea{
-        float:left;
-        margin: 0vh 2.5vw;
-        height: 5vh; 
-        outline: none;
-        resize: none;
-        border-radius: 24px;
-        border: 1px black solid;
-        margin: 1vh 1vw;
-        background: #f7f7f7;
-    }
-    
-    
-    .sendStyle{
-        background-color: var(--blue-color);
-        border: none;
-    
-    }
-    
-    
-    /* .btn{
-        padding:5px;
-        margin: .5vh .5vw;
-    } */
-    
-    #keybordBox{
-    
-    /*     grid-area:4/3/5/4; */
-        background-color: #ced6d6;
-        border-radius: 0px 0px 24px 24px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    /*     height: 20vh; */
-    /*     grid-column: 2 / 3;
-        grid-row: 5/5; */
-        grid-area: content3;
-    }
-    
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+:root {
+    --first-color:white;
+    --second-color:#ced6d6;
+    --body-background-color:#e8a247;
+    --message-area-image:url(../img/whats-image.png);
+    --time-background:yellowgreen;
+    --message-color:#0884ff;
+    --shift-color:#b5b5c6;
+}
+
+body{
+    background-color: var(--body-background-color);
+    height: 100vh;
+}
+
+.container{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: .2fr 0fr 0fr 0fr .2fr;
+    grid-template-areas: 
+        ". . . . ."
+        ". . topPhone . ."
+        ". . content1 . ."
+        ". . content2 . ."
+        ". . content3 . ."; 
+}
+
+.topPhone{
+    background: var(--first-color);
+    width:100%;
+    display: flex;
+    height: 5vh;
+    border-radius: 24px 24px 0px 0px;
+    grid-area: topPhone;
+
+}
+
+.messageArea{
+    grid-area: content1;
+    text-align: center;
+    background-image: var(--message-area-image);
+    height: 50vh;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.positionDate{
+    display: flex;
+    width: 100%;
+    margin: 1vh 0vw;
+    justify-content: center;
+}
+
+.timeStyle{
+    background:var(--time-background);
+    padding: 0vh 2vw;
+    border-radius:24px;
+}
+
+.message{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    border-radius: 8px;
+    max-width: 45vw;
+    margin: 1vh 1vw;
+    background-color: var(--message-color);  
+    color: white;
+    overflow-wrap: anywhere;
+}
+
+.dateSendStyle{
+    font-size: .7rem;
+    flex-direction: column;
+    width:10vw;
+    display: flex;
+    justify-content: center; 
+    color: white;
+}
+
+.sendAreaStyle{
+    grid-area: content2;
+    display: flex;
+    justify-content: space-between;
+    background:white;
+}
+
+.emojiStyle{
+    float: left;
+    background-color: var(--first-color);
+    border: none;
+}
+
+textarea{
+    float:left;
+    margin: 0vh 2.5vw;
+    height: 5vh; 
+    outline: none;
+    resize: none;
+    border-radius: 24px;
+    border: 1px black solid;
+    margin: 1vh 1vw;
+    background: #f7f7f7;
+}
+
+
+.sendStyle{
+    background-color: var(--first-color);
+    border: none;
+}
+
+#keybordBox{
+    background-color:var(--second-color) ;
+    border-radius: 0px 0px 24px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-area: content3;
+}
+
+.btn{
+    padding:.6rem;
+    background-color: white;
+    border: none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.shiftStyle{
+    background-color: var(--shift-color);
+}
+
+#emojiBox{
+    visibility: hidden;
+    background: var(--second-color);
+    height: 20vh;
+    display: flex;
+    border-radius: 0px 0px 24px 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-area: content3;
+}
+
+@media screen and (max-width: 2100px){
     .btn{
-        padding:5px;
-        background-color: white;
-        border: none;
-        border-radius:4px;
-        cursor:pointer;
+        padding:.5rem;
     }
-    
-    
-    .shiftStyle{
-        background-color: #b5b5c6;
+}
+
+@media screen and (max-width: 1366px){
+
+    .btn{
+        padding:.4rem;
     }
-    
-    
-    #emojiBox{
-        visibility: hidden;
-        background: green;
-        /* grid-column: 2 / 6; */
-    /*     grid-row: 3/7; */
-        height: 20vh;
-        display: flex;
-        border-radius: 0px 0px 24px 24px;
-        flex-wrap: wrap;
-        justify-content: center;
-        grid-area: content3;
+}
+@media screen and (max-width: 1024px){
+    .btn{
+        padding:.2rem;
     }
-    /* 
-    .emoj{
-        
-    } */
-    
-    
-    
-    /* .btn{
-        padding: 4%;
-        margin: 0vh 0vw;
-    } 
-     */
-    
-    
-    
-    @media screen and (max-width: 1366px){
-    
-    }
-    /* @media screen and (max-width: 1024px){
-    
-    
-    } */
-    
-    
-    /* @media screen and (max-width: 360px){
-        
-    
-    
-    } */
-    
-    
-    
-    
-    /* # Desktop */
-    
-    
-    /* @media only screen and (max-width: 992px){
-    
-    } */
-    
-    
-    /* # Tablet */
-    
-    /* @media screen and (max-width: 768px){
-    
-    
-    }
-    
-    @media screen and (max-width: 480px){
-    
-    
-    } */
-    
+
+}
