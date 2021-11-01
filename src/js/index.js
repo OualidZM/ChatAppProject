@@ -1,13 +1,7 @@
-const date = new Date()
-
-const hours = date.getHours().toLocaleString()
-const minutes = date.getMinutes().toLocaleString()
-const day = date.getDate().toLocaleString()
-const nameMonth = date.toLocaleString('default', { month: 'short' })
-
+const FullDay = 1000 * 60 * 60 * 24
 // var ghipyKey
 
-document.getElementById('datee').innerHTML = `${day} ${nameMonth}`
+document.getElementById('datee').innerHTML = `${actualDate()}`
 
 var contadorShift = 0
 var emojiContador = 0
@@ -16,34 +10,28 @@ arrBtn.forEach((element) =>
     element.addEventListener('click', (e) => {
         if (element.innerHTML === 'SPACE') {
             return (document.getElementById('keyValue').value += ' ')
-        } 
-        else if (element.innerHTML === 'enter') {
+        } else if (element.innerHTML === 'enter') {
             return (document.getElementById('keyValue').value += '<br>')
-        } 
-        else if (element.innerHTML === '|--') {
+        } else if (element.innerHTML === '←') {
             let inputValue = document.getElementById('keyValue').value
             return (document.getElementById('keyValue').value = document
                 .getElementById('keyValue')
                 .value.substr(0, inputValue.length - 1))
-        } 
-        else if (element.innerHTML === '--|') {
+        } else if (element.innerHTML === '→') {
             let inputValue = document.getElementById('keyValue').value
             return (document.getElementById('keyValue').value =
                 inputValue.substring(1))
-        } 
-        else if (element.innerHTML === 'C') {
+        } else if (element.innerHTML === 'C') {
             let inputValue = document.getElementById('keyValue').value
             return (document.getElementById('keyValue').value = document
                 .getElementById('keyValue')
                 .value.replace(inputValue, ''))
-        } 
-        else if (element.innerHTML === 'CE') {
+        } else if (element.innerHTML === 'CE') {
             let inputValue = document.getElementById('keyValue').value
             return (document.getElementById('keyValue').value = document
                 .getElementById('keyValue')
                 .value.substr(0, inputValue.lastIndexOf(' ')))
-        } 
-        else if (element.innerHTML === 'shift') {
+        } else if (element.innerHTML === 'shift') {
             contadorShift++
             let shift = document.querySelector('.shiftStyle')
 
@@ -58,8 +46,7 @@ arrBtn.forEach((element) =>
                 arrBtn.forEach((e) => (e.style.textTransform = 'lowercase'))
                 contadorShift = 0
             }
-        } 
-        else {
+        } else {
             let shift = document.querySelector('.shiftStyle')
             if (contadorShift == 0) {
                 return (document.getElementById('keyValue').value +=
@@ -89,7 +76,6 @@ let emojiButton = document.getElementById('emojiButton')
 emojiButton.addEventListener('click', () => {
     let emojiBox = document.getElementById('emojiBox')
     let keybord = document.getElementById('keybordBox')
-
     emojiContador++
 
     if (emojiContador == 1) {
@@ -112,26 +98,54 @@ emoj.forEach((elem) =>
 )
 
 document.getElementById('sendButton').addEventListener('click', () => {
+    let date = new Date()
+    let hours = date.getHours().toLocaleString()
+    let minutes = date.getMinutes().toLocaleString()
+
     let inputValue = document.getElementById('keyValue').value //input value
     let areaMessage = document.querySelector('.messageArea') // area message
     let createElementt = document.createElement('h3') // create p element
     let lenginp = inputValue.length
 
-    if(lenginp == 0){
-        return;
-    }
-    else{
-        if(lenginp > 0){
+    if (lenginp == 0) {
+        return
+    } else {
+        if (lenginp > 0) {
             let appendChild = areaMessage.appendChild(createElementt)
             appendChild.innerHTML =
-                document.getElementById('keyValue').value + ' ' + `<h6 class="dateSendStyle" >${hours}:${minutes}</h6>`
+                document.getElementById('keyValue').value + ' ' + `<h6 class="dateSendStyle" >${actualTime()}</h6>`
             appendChild.className = 'message'
-            appendChild.style.width = lenginp + 9 + 'vh' 
-            document.getElementById('keyValue').value = document.getElementById('keyValue').value.replace(inputValue, '')
-            areaMessage.scrollTop =  areaMessage.scrollHeight
+            appendChild.style.width = lenginp + 9 + 'vh'
+            document.getElementById('keyValue').value = document
+                .getElementById('keyValue')
+                .value.replace(inputValue, '')
+            areaMessage.scrollTop = areaMessage.scrollHeight
         }
     }
-
 })
+function actualTime() {
+    let currentTime = new Date()
+    let hours = currentTime.getHours()
+    let minutes = currentTime.getMinutes()
+    let actualTime = hours + ':' + minutes + ' '
 
+    if (minutes < 10) {
+        minutes = '0' + minutes
+    }
+    if (hours > 11) {
+        actualTime += 'PM'
+    } else {
+        actualTime += 'AM'
+    }
+    return actualTime
+}
+setInterval(actualTime, 1000)
 
+function actualDate() {
+    let currentDate = new Date()
+    let day = currentDate.getDate()
+    let nameMonth = currentDate.toLocaleString('default', { month: 'short' })
+    let actualDateValue = day + ' ' + nameMonth
+    return actualDateValue
+}
+setInterval(actualDate, FullDay)
