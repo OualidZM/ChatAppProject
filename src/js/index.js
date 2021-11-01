@@ -128,10 +128,7 @@ function actualTime() {
     let hours = currentTime.getHours()
     let minutes = currentTime.getMinutes()
     let actualTime = hours + ':' + minutes + ' '
-
-    if (minutes < 10) {
-        minutes = '0' + minutes
-    }
+    
     if (hours > 11) {
         actualTime += 'PM'
     } else {
