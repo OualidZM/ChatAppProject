@@ -11,7 +11,7 @@
     --message-area-image:url(../img/whats-image.png);
     --time-background:yellowgreen;
     --message-color:#0884ff;
-    --shift-color:#b5b5c6;
+    --special-keys-color:#b5b5c6;
 }
 
 body{
@@ -136,7 +136,11 @@ textarea{
 }
 
 .shiftStyle{
-    background-color: var(--shift-color);
+    background-color: var(--special-keys-color);
+}
+
+.specialKeysStyle{
+    background-color: var(--special-keys-color);
 }
 
 #emojiBox{
