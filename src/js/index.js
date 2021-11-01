@@ -1,13 +1,11 @@
 const FullDay = 1000 * 60 * 60 * 24
-// var ghipyKey
-
 document.getElementById('datee').innerHTML = `${actualDate()}`
 
 var contadorShift = 0
 var emojiContador = 0
 var arrBtn = document.querySelectorAll('.btn')
 arrBtn.forEach((element) =>
-    element.addEventListener('click', (e) => {
+    element.addEventListener('click', () => {
         if (element.innerHTML === 'SPACE') {
             return (document.getElementById('keyValue').value += ' ')
         } else if (element.innerHTML === 'enter') {
