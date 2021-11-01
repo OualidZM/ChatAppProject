@@ -36,16 +36,61 @@
 ### MESSAG
 ---
 
-To get the message i need to create a `new Date` object,
-    
-    const date = new Date()
- 
-for then later on get the month(short version), day, hour and minutes, and added inside the message, I will explain later how I add the date inside the message `TEXTAR`
+The message has two parts, the message and the date, I will explain later in `TEXTAR` how I concat the message and the date, for now i will explain how I create the date
 
-    const hours = date.getHours().toLocaleString()
-    const minutes = date.getMinutes().toLocaleString()
-    const day = date.getDate().toLocaleString()
-    const nameMonth = date.toLocaleString('default', { month: 'short' })
+to create the actual time I use two functions, `actualTime` and `actualDate`
+
+in the first function:
+
+    function actualTime() {
+
+I create a date object, and use it to get the hour and minutes, then i have another variable that concats both of them
+
+        let currentTime = new Date()
+        let hours = currentTime.getHours()
+        let minutes = currentTime.getMinutes()
+        let actualTime = hours + ':' + minutes + ' '
+
+if the value of the hour is bigger than 11, then it will add `PM`
+
+        if (hours > 11) {
+            actualTime += 'PM'
+        } 
+        
+if it's not bigger than 11, it will add `AM`
+
+        else {
+            actualTime += 'AM'
+        }
+        return actualTime
+    }
+
+and this process will be executed every minute
+
+    setInterval(actualTime, 1000)
+
+
+In the second function:
+
+    function actualDate() {
+
+I will create a Date object, to get the actual day, and the actual month name
+
+        let currentDate = new Date()
+        let day = currentDate.getDate()
+        let nameMonth = currentDate.toLocaleString('default', { month: 'short' })
+
+then I will store, the concatenation inside a variable
+
+        let actualDateValue = day + ' ' + nameMonth
+        return actualDateValue
+    }
+
+and this process will be executed every 24h, `FullDay` is a global variable that stores 24h in milliseconds(1000 * 60 * 60 * 24)
+
+    setInterval(actualDate, FullDay)
+
+
 
 ### TEXTAR
 ---
@@ -92,7 +137,7 @@ if it's not equal to 0, it will display the message
 Now that `createElementt` is appended inside the `areaMessage`, and stored inside a variable `appendChild`, we need to add content to it, for this, the variable `appendChild` will innerHTML from `inputValue`, plus a `h6` that will contain the date
 
         appendChild.innerHTML =
-            document.getElementById('keyValue').value + ' ' + `<h6 class="dateSendStyle" >${hours}:${minutes}</h6>`
+            document.getElementById('keyValue').value + ' ' + `<h6 class="dateSendStyle" >${actualTime()}</h6>`
 
 now that the message is in the `areaMessage`, I need to add style to it, 
 for this i will use `className`
